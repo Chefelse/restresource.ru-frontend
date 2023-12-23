@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import logotypeComponent from "@/components/logotypeComponent.vue";
+import recipesModalComponent from "@/pages/home/components/recipesModalComponent.vue";
 import { provide, ref } from "vue";
-import recipesModalComponent from "./recipesModalComponent.vue";
 
 const active = ref(false);
 
