@@ -62,6 +62,7 @@ section {
   article {
     &:first-child:deep() {
       grid-row: 1;
+
       p {
         display: none;
       }

@@ -15,7 +15,7 @@ const props = defineProps<{
 
     <RouterLink
       :to="{
-        name: 'home',
+        name: 'recipe',
       }"
     >
       {{ cards.collection }}

@@ -1,12 +1,14 @@
 <script lang="ts" setup>
-import loaderComponent from '@/components/loaderComponent.vue'
-import { useLoader } from '@/stores/useLoader'
-import { RouterView } from 'vue-router'
+import headerComponent from "@/components/headerComponent.vue";
+import loaderComponent from "@/components/loaderComponent.vue";
+import { useLoader } from "@/stores/useLoader";
+import { RouterView } from "vue-router";
 
-const store = useLoader()
+const store = useLoader();
 </script>
 
 <template>
+  <headerComponent />
   <router-view v-slot="{ Component }">
     <transition name="fade">
       <loaderComponent v-if="store.loader" />
@@ -17,9 +19,9 @@ const store = useLoader()
 </template>
 
 <style lang="scss">
-@import '@/assets/scss/reset.scss';
-@import '@fontsource/roboto/300.css';
-@import '@fontsource/roboto/400.css';
+@import "@/assets/scss/reset.scss";
+@import "@fontsource/roboto/300.css";
+@import "@fontsource/roboto/400.css";
 
 :root {
   --c-background: 255, 255, 255; // #f8fafc
@@ -33,7 +35,7 @@ body {
   color: rgb(var(--c-dark));
 
   font:
-    300 15px / 1.5 'Roboto',
+    300 15px / 1.5 "Roboto",
     sans-serif;
 }
 

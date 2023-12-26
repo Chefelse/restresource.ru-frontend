@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import headerComponent from "@/components/headerComponent.vue";
 import bannerComponent from "../components/bannerComponent.vue";
 import heroComponent from "../components/heroComponent.vue";
 import weekComponent from "../components/week/weekComponent.vue";
@@ -7,8 +6,6 @@ import weekRecipesComponent from "../components/week/weekRecipesComponent.vue";
 </script>
 
 <template>
-  <headerComponent />
-
   <heroComponent />
 
   <main>

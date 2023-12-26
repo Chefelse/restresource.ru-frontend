@@ -12,7 +12,7 @@ store.read();
 <template>
   <section>
     <article v-outside="() => (active = false)">
-      <ul v-for="collection in store.collections" :key="collection.id">
+      <ul v-for="collection in store.array" :key="collection.id">
         <li>{{ collection.name }}</li>
 
         <li v-for="recipe in collection.categories.slice(0, 4)" :key="recipe.id">{{ recipe.name }}</li>
