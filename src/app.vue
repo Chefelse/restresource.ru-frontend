@@ -31,7 +31,6 @@ const store = useLoader();
 }
 
 body {
-  background-color: #00000010;
   color: rgb(var(--c-dark));
 
   font:

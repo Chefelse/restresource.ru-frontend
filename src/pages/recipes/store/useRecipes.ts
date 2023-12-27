@@ -27,5 +27,13 @@ export const useRecipes = defineStore("recipes", () => {
     }
   };
 
-  return { array, object, message, write, read };
+  const readBy = async (data: string) => {
+    try {
+      object.value = await get<Recipe>(`${http}/v1/recipes/${data}`);
+    } catch (error: any) {
+      message.value = "Что-то пошло не так";
+    }
+  };
+
+  return { array, object, message, write, read, readBy };
 });

@@ -48,6 +48,7 @@ interface Recipe {
   image?: string | null;
   status?: boolean;
   time?: string | null;
+  related?: Recipe[];
 }
 
 export type { Categories, Collections, Ingredients, Levels, Recipe, Steps };

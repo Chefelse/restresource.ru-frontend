@@ -16,11 +16,19 @@ export const routes = [
     },
   },
   {
-    path: "/recipe",
+    path: "/recipes",
+    name: "recipes",
+    component: () => import("@/pages/recipes/views/recipesView.vue"),
+    meta: {
+      name: "Рецепты",
+    },
+  },
+  {
+    path: "/recipes/:id",
     name: "recipe",
     component: () => import("@/pages/recipes/views/recipeView.vue"),
     meta: {
-      name: "Рецепты",
+      name: "Рецепт",
     },
   },
 ];

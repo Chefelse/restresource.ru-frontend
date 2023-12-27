@@ -56,7 +56,7 @@ const recipes = ref([
 <style lang="scss" scoped>
 section {
   display: grid;
-  grid-template: auto / repeat(5, 1fr);
+  grid-template: auto / repeat(5, 1fr) !important;
   gap: 20px;
 
   article {

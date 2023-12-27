@@ -1,20 +1,22 @@
 <script lang="ts" setup>
+import { useRoute } from "vue-router";
 import weekRecipesComponent from "../../home/components/week/weekRecipesComponent.vue";
+import recipesTopbar from "../components/recipesTopbar.vue";
 import { useRecipes } from "../store/useRecipes";
+
+const route = useRoute();
+
 const recipes = useRecipes();
 
-recipes.read();
+recipes.readBy(route.params.id as string);
 </script>
 
 <template>
-  <main v-if="recipes.array">
-    <pre>{{ recipes.array[0] }}</pre>
-    <section>
-      <h1>{{ recipes.array[0].name }}</h1>
-      <p>
-        by: <a>{{ recipes.array[0].author }}</a>
-      </p>
-    </section>
+  <main v-if="recipes.object">
+    <h1>{{ recipes.object.name }}</h1>
+    <p>
+      <small> от {{ recipes.object.author || "Алексей Б." }} </small>
+    </p>
 
     <section>
       <picture>
@@ -22,31 +24,9 @@ recipes.read();
       </picture>
 
       <article>
-        <ul>
-          <li>
-            <svg width="18" height="18">
-              <use xlink:href="@/assets/icons.svg#plate"></use>
-            </svg>
+        <recipesTopbar :data="{ ...recipes.object }" />
 
-            {{ recipes.array[0].collections[0].name }}
-          </li>
-          <li>
-            <svg width="18" height="18">
-              <use xlink:href="@/assets/icons.svg#network"></use>
-            </svg>
-
-            {{ recipes.array[0].levels[0].name }}
-          </li>
-          <li>
-            <svg width="18" height="18">
-              <use xlink:href="@/assets/icons.svg#time"></use>
-            </svg>
-
-            {{ recipes.array[0].time }}
-          </li>
-        </ul>
-
-        <p>{{ recipes.array[0].description }}</p>
+        <p>{{ recipes.object.description }}</p>
 
         <p>Опубликовано 26.12.2023</p>
       </article>
@@ -57,24 +37,37 @@ recipes.read();
     <weekRecipesComponent />
 
     <section>
-      <article>
-        <h3>Ингредиенты</h3>
+      <aside>
+        <h3>Основные ингредиенты</h3>
 
-        <ul v-for="(item, idx) in recipes.array[0].ingredients" :key="item">
+        <ul v-for="(ingredient, i) in recipes.object.ingredients" :key="i">
           <li>
-            <small>{{ idx + 1 }}.</small>
-            {{ item.name }}
+            <small>{{ i + 1 }}.</small>
+            {{ ingredient.name }}
           </li>
         </ul>
-      </article>
+
+        <template v-if="recipes.object.related">
+          <ul v-for="(el, i) in recipes.object.related" :key="i">
+            <li>
+              <RouterLink :to="{ name: 'recipe', params: { id: el.id } }">{{ el.name }}</RouterLink>
+            </li>
+
+            <li v-for="(ingredient, i) in el.ingredients" :key="i">
+              <small>{{ i + 1 }}.</small>
+              {{ ingredient.name }}
+            </li>
+          </ul>
+        </template>
+      </aside>
 
       <article>
         <h3>Способ приготовления</h3>
 
-        <ul v-for="(item, idx) in recipes.array[0].steps" :key="item">
+        <ul v-for="(el, i) in recipes.object.steps" :key="i">
           <li>
-            <small>{{ idx + 1 }}.</small>
-            {{ item.content }}
+            <small>{{ i + 1 }}.</small>
+            {{ el.content }}
           </li>
         </ul>
       </article>
@@ -85,54 +78,60 @@ recipes.read();
 <style lang="scss" scoped>
 main {
   display: grid;
-  gap: 40px;
+  gap: 10px;
+  margin: 80px auto;
   max-width: 1200px;
-  margin: auto;
-  padding: 40px 20px;
 
   h1 {
     font-size: 24px;
   }
 
   h2 {
-    font-size: 20px;
+    font-size: 22px;
   }
 
   h3 {
-    font-weight: 400;
+    font-size: 18px;
+    margin: 0 0 10px;
   }
 
   section {
     display: grid;
     gap: 20px;
+    grid-template: auto / minmax(472px, 710px) auto;
 
     article {
       display: grid;
       gap: 20px;
-      height: fit-content;
-    }
-
-    &:nth-of-type(2) {
-      grid-template: auto / repeat(2, 1fr);
-
-      ul {
-        display: grid;
-        grid-auto-flow: column;
-
-        li {
-          svg {
-            margin: 0 10px 0 0;
-            vertical-align: middle;
-          }
-        }
-      }
+      place-content: start;
     }
 
     &:last-of-type {
-      grid-template: auto / auto 1fr;
+      grid-template: auto / 472px auto;
+      margin: 40px 0;
+
+      aside {
+        border: 1px solid #eeeeee;
+        display: grid;
+        gap: 20px;
+        padding: 20px;
+        place-content: start;
+
+        ul {
+          li {
+            a {
+              display: block;
+              font-size: 18px;
+              margin: 0 0 20px;
+              width: fit-content;
+            }
+          }
+        }
+      }
 
       article {
-        border: 1px solid;
+        border: 1px solid #eeeeee;
+        display: grid;
         padding: 20px;
       }
     }
