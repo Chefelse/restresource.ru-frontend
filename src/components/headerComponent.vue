@@ -12,6 +12,7 @@ provide("active", active);
   <header>
     <nav>
       <logotypeComponent></logotypeComponent>
+
       <RouterLink :to="{ path: '/' }" custom v-slot="{ navigate }">
         <svg width="160" height="40" v-on:click="navigate">
           <use xlink:href="@/assets/icons.svg#text-logo"></use>
@@ -71,6 +72,12 @@ header {
 
     &:first-of-type {
       grid-template: auto / auto 1fr;
+
+      svg {
+        &:last-of-type {
+          cursor: pointer;
+        }
+      }
     }
 
     a {

@@ -19,7 +19,16 @@ const props = defineProps<{
       <img :src="props.data.image || 'https://placehold.co/1920x1200/393b44/FFFFFF/webp'" loading="lazy" />
     </RouterLink>
 
-    <h3>{{ props.data.name }}</h3>
+    <RouterLink
+      :to="{
+        name: 'recipe',
+        params: {
+          id: props.data.id,
+        },
+      }"
+    >
+      <h3>{{ props.data.name }}</h3>
+    </RouterLink>
 
     <RouterLink
       :to="{
