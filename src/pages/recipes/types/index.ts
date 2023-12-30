@@ -50,6 +50,7 @@ interface Recipe {
   status?: boolean;
   time?: string | null;
   related?: Recipe[];
+  private?: boolean;
 }
 
 export type { Categories, Collections, Ingredients, Levels, Recipe, Steps };

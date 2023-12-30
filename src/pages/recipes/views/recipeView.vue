@@ -11,7 +11,8 @@ const route = useRoute();
 
 const recipes = useRecipes();
 
-const getProperties = (el: Ingredients) => computed(() => `${el.weight[0].name} ${el.weight[0].measure[0].name}`).value;
+const getProperties = (el: Ingredients) =>
+  computed(() => `${el.weight[0].name} ${el.weight[0].measure[0]?.name}`).value;
 
 watchEffect(() => recipes.readOne(route.params.id as string));
 </script>
@@ -19,6 +20,7 @@ watchEffect(() => recipes.readOne(route.params.id as string));
 <template>
   <main v-if="recipes.object">
     <h1>{{ recipes.object.name }}</h1>
+
     <p>
       <small> от {{ recipes.object.author || "Алексей Б." }} </small>
     </p>
@@ -68,19 +70,30 @@ watchEffect(() => recipes.readOne(route.params.id as string));
         </template>
       </aside>
 
-      <article>
+      <article :class="{ private: recipes.object.private }">
         <h3>Способ приготовления</h3>
 
-        <ul v-for="(el, i) in recipes.object.steps" :key="i">
-          <li>
-            <small>{{ i + 1 }}.</small>
-            {{ el.content }}
-          </li>
-        </ul>
+        <template v-if="recipes.object.private">
+          <ul v-for="(el, i) in recipes.object.steps.slice(0, 2)" :key="i">
+            <li>
+              <small>{{ i + 1 }}.</small>
+              {{ el.content }}
+            </li>
+          </ul>
+        </template>
+
+        <template v-else>
+          <ul v-for="(el, i) in recipes.object.steps" :key="i">
+            <li>
+              <small>{{ i + 1 }}.</small>
+              {{ el.content }}
+            </li>
+          </ul>
+        </template>
       </article>
     </section>
 
-    <bannerComponent />
+    <bannerComponent v-if="recipes.object.private" />
   </main>
 </template>
 
@@ -145,6 +158,19 @@ main {
         border: 1px solid #eeeeee;
         display: grid;
         padding: 20px;
+        position: relative;
+
+        &.private {
+          &::before {
+            content: "";
+
+            background: rgb(255, 255, 255);
+            background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.298739564185049) 100%);
+
+            position: absolute;
+            inset: 0;
+          }
+        }
       }
     }
   }
