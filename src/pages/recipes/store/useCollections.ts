@@ -7,6 +7,7 @@ const http = import.meta.env.VITE_HTTP;
 
 export const useCollections = defineStore("collections", () => {
   const array = ref<Collections | null>(null);
+  const object = ref<Collections | null>(null);
   const message = ref<string | null>(null);
 
   const read = async () => {
@@ -21,5 +22,13 @@ export const useCollections = defineStore("collections", () => {
     }
   };
 
-  return { read, array };
+  const readOne = async (data: string) => {
+    try {
+      object.value = await get<Collections>(`${http}/v1/collections/${data}`);
+    } catch (error: any) {
+      message.value = "Что-то пошло не так";
+    }
+  };
+
+  return { read, readOne, array, object };
 });

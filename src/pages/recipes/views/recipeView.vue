@@ -8,7 +8,7 @@ const route = useRoute();
 
 const recipes = useRecipes();
 
-recipes.readBy(route.params.id as string);
+recipes.readOne(route.params.id as string);
 </script>
 
 <template>
@@ -20,7 +20,7 @@ recipes.readBy(route.params.id as string);
 
     <section>
       <picture>
-        <img src="https://placehold.co/2048x1080" alt="" />
+        <img :src="recipes.object.image || 'https://placehold.co/1920x1200/393b44/FFFFFF/webp'" loading="lazy" />
       </picture>
 
       <article>

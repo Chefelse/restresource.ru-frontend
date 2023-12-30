@@ -19,8 +19,8 @@ provide("active", active);
 
     <nav>
       <RouterLink :to="{ path: '/' }">Подписаться</RouterLink>
-      <RouterLink :to="{ path: '/' }">Войти</RouterLink> |
-      <RouterLink :to="{ path: '/' }">Регистрация</RouterLink>
+      <RouterLink :to="{ name: 'signin' }">Войти</RouterLink> |
+      <RouterLink :to="{ name: 'signin' }">Регистрация</RouterLink>
     </nav>
   </header>
 

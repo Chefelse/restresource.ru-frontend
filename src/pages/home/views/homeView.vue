@@ -10,20 +10,12 @@ import weekRecipesComponent from "../components/week/weekRecipesComponent.vue";
 
   <main>
     <h1>На этой неделе</h1>
-
-    <section>
-      <weekComponent />
-    </section>
+    <weekComponent />
 
     <h2>Рецепты этой недели</h2>
+    <weekRecipesComponent />
 
-    <section>
-      <weekRecipesComponent />
-    </section>
-
-    <section>
-      <bannerComponent />
-    </section>
+    <bannerComponent />
   </main>
 </template>
 
@@ -31,8 +23,8 @@ import weekRecipesComponent from "../components/week/weekRecipesComponent.vue";
 main {
   display: grid;
   gap: 40px;
-  max-width: 1200px;
   margin: auto;
+  max-width: 1200px;
   padding: 20px;
 
   h1 {
@@ -41,6 +33,7 @@ main {
 
   h2 {
     font-size: 20px;
+    margin: 40px 0 0;
   }
 }
 </style>

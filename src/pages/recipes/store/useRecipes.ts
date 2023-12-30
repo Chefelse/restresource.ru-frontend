@@ -8,8 +8,8 @@ const http = import.meta.env.VITE_HTTP;
 const message = ref<string | null>(null);
 
 export const useRecipes = defineStore("recipes", () => {
-  const array = ref<Recipe | null>(null);
-  const object = ref<Recipe | null>(null);
+  const array = ref<Recipe>();
+  const object = ref<Recipe>();
 
   const write = async (data: Recipe) => {
     try {
@@ -27,7 +27,7 @@ export const useRecipes = defineStore("recipes", () => {
     }
   };
 
-  const readBy = async (data: string) => {
+  const readOne = async (data: string) => {
     try {
       object.value = await get<Recipe>(`${http}/v1/recipes/${data}`);
     } catch (error: any) {
@@ -35,5 +35,13 @@ export const useRecipes = defineStore("recipes", () => {
     }
   };
 
-  return { array, object, message, write, read, readBy };
+  const readBy = async (data: string) => {
+    try {
+      array.value = await get<Recipe>(`${http}/v1/recipes/collections/${data}`);
+    } catch (error: any) {
+      message.value = "Что-то пошло не так";
+    }
+  };
+
+  return { array, object, message, write, read, readOne, readBy };
 });

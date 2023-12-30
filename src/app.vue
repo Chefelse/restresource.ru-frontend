@@ -12,9 +12,9 @@ const store = useLoader();
   <router-view v-slot="{ Component }">
     <transition name="fade">
       <loaderComponent v-if="store.loader" />
-
-      <component v-else :is="Component" />
     </transition>
+
+    <component :is="Component" />
   </router-view>
 </template>
 

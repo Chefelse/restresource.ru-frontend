@@ -1,28 +1,39 @@
 <script lang="ts" setup>
-import type { Card } from "../types";
+import type { Recipe } from "@/pages/recipes/types";
 
 const props = defineProps<{
-  cards: Card;
-  state?: boolean;
+  data: Recipe;
 }>();
 </script>
 
 <template>
-  <article>
-    <img :src="props.cards.image" loading="lazy" />
+  <article v-if="props.data">
+    <RouterLink
+      :to="{
+        name: 'recipe',
+        params: {
+          id: props.data.id,
+        },
+      }"
+    >
+      <img :src="props.data.image || 'https://placehold.co/1920x1200/393b44/FFFFFF/webp'" loading="lazy" />
+    </RouterLink>
 
-    <h3>{{ cards.title }}</h3>
+    <h3>{{ props.data.name }}</h3>
 
     <RouterLink
       :to="{
-        name: 'recipes',
+        name: 'collection',
+        params: {
+          id: props.data.collections[0].id,
+        },
       }"
     >
-      {{ cards.collection }}
+      {{ props.data.collections[0].name }}
     </RouterLink>
 
     <p>
-      {{ cards.description }}
+      {{ props.data.description }}
     </p>
   </article>
 </template>
@@ -46,6 +57,10 @@ article {
     }
   }
 
+  a {
+    width: fit-content;
+  }
+
   img {
     display: block;
     width: 100%;
@@ -55,6 +70,10 @@ article {
 
   p {
     display: none;
+  }
+
+  h3 {
+    font-size: 18px;
   }
 }
 </style>

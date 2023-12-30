@@ -20,6 +20,7 @@ div {
   background-color: rgb(var(--c-background));
   inset: 0;
   position: fixed;
+  z-index: 99;
 }
 
 svg {

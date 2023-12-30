@@ -81,7 +81,7 @@ const sendForm = (event: Guest) => {
 <style lang="scss" scoped>
 main {
   display: grid;
-  height: 100vh;
+  height: calc(100vh - 154.8px);
   place-items: center;
 
   section {
