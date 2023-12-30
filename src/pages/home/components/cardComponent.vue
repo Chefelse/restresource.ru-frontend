@@ -88,6 +88,8 @@ article {
   }
 
   &.small {
+    grid-row: unset;
+
     h3 {
       font-size: inherit;
       font-weight: 400;

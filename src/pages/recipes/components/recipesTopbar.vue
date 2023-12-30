@@ -13,7 +13,9 @@ defineProps<{
         <use xlink:href="@/assets/icons.svg#plate"></use>
       </svg>
 
-      {{ data.collections[0].name }}
+      <RouterLink :to="{ name: 'collection', params: { id: data.collections[0].id } }">
+        {{ data.collections[0].name }}
+      </RouterLink>
     </li>
 
     <li>

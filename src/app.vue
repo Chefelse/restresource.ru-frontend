@@ -47,4 +47,8 @@ body {
 .fade-leave-to {
   opacity: 0;
 }
+
+img {
+  display: block;
+}
 </style>
