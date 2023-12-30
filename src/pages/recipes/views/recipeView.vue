@@ -1,5 +1,7 @@
 <script lang="ts" setup>
+import { watchEffect } from "vue";
 import { useRoute } from "vue-router";
+import bannerComponent from "../../home/components/bannerComponent.vue";
 import weekRecipesComponent from "../../home/components/week/weekRecipesComponent.vue";
 import recipesTopbar from "../components/recipesTopbar.vue";
 import { useRecipes } from "../store/useRecipes";
@@ -8,7 +10,7 @@ const route = useRoute();
 
 const recipes = useRecipes();
 
-recipes.readOne(route.params.id as string);
+watchEffect(() => recipes.readOne(route.params.id as string));
 </script>
 
 <template>
@@ -40,8 +42,8 @@ recipes.readOne(route.params.id as string);
       <aside>
         <h3>Основные ингредиенты</h3>
 
-        <ul v-for="(ingredient, i) in recipes.object.ingredients" :key="i">
-          <li>
+        <ul>
+          <li v-for="(ingredient, i) in recipes.object.ingredients" :key="i">
             <small>{{ i + 1 }}.</small>
             {{ ingredient.name }}
           </li>
@@ -72,6 +74,8 @@ recipes.readOne(route.params.id as string);
         </ul>
       </article>
     </section>
+
+    <bannerComponent />
   </main>
 </template>
 
@@ -99,6 +103,7 @@ main {
     display: grid;
     gap: 20px;
     grid-template: auto / minmax(472px, 710px) auto;
+    margin: 0 0 40px;
 
     article {
       display: grid;
@@ -119,6 +124,8 @@ main {
 
         ul {
           li {
+            margin: 0 0 5px;
+
             a {
               display: block;
               font-size: 18px;

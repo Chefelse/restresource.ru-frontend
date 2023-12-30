@@ -22,7 +22,7 @@ import weekRecipesComponent from "../components/week/weekRecipesComponent.vue";
 <style lang="scss" scoped>
 main {
   display: grid;
-  gap: 40px;
+  gap: 20px;
   margin: auto;
   max-width: 1200px;
   padding: 20px;
@@ -34,6 +34,9 @@ main {
   h2 {
     font-size: 20px;
     margin: 40px 0 0;
+  }
+  section {
+    margin: 0 0 40px;
   }
 }
 </style>

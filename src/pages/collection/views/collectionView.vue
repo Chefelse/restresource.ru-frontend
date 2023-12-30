@@ -2,6 +2,7 @@
 import { useCollections } from "@/pages/recipes/store/useCollections";
 import { useRecipes } from "@/pages/recipes/store/useRecipes";
 import { useRoute } from "vue-router";
+import cardComponent from "../../home/components/cardComponent.vue";
 
 const route = useRoute();
 
@@ -46,17 +47,7 @@ recipes.readBy(route.params.id as string);
       </aside>
 
       <div>
-        <article v-for="(el, i) of recipes.array" :key="i">
-          <RouterLink :to="{ name: 'recipe', params: { id: el.id } }">
-            <img :src="el.image || 'https://placehold.co/1920x1200/393b44/FFFFFF/webp'" loading="lazy" />
-          </RouterLink>
-
-          <h3>{{ el.name }}</h3>
-
-          <p>
-            {{ collections.object?.name }}
-          </p>
-        </article>
+        <cardComponent class="small" v-for="el in recipes.array" :key="el.id" :data="el" />
       </div>
     </section>
   </main>
@@ -95,10 +86,9 @@ main {
         gap: 20px;
         grid-template: auto / repeat(3, 1fr);
 
-        article {
-          h3 {
-            margin: 5px 0;
-            text-align: unset;
+        article:deep() {
+          p {
+            display: none;
           }
         }
       }

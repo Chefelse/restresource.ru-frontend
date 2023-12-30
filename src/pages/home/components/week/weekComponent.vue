@@ -17,6 +17,6 @@ recipes.read();
 section {
   display: grid;
   gap: 20px;
-  grid-template: 300px 300px / 1fr 300px;
+  grid-template: auto / 1fr 300px;
 }
 </style>

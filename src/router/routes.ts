@@ -39,4 +39,12 @@ export const routes = [
       name: "Рецепт",
     },
   },
+  {
+    path: "/plans",
+    name: "plans",
+    component: () => import("@/pages/plans/views/plansView.vue"),
+    meta: {
+      name: "Планы",
+    },
+  },
 ];

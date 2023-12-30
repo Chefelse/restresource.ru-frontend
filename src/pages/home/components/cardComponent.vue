@@ -41,7 +41,7 @@ const props = defineProps<{
 <style lang="scss" scoped>
 article {
   display: grid;
-  gap: 10px;
+  gap: 5px;
   grid-template: 1fr auto / auto;
 
   &:first-of-type {
@@ -57,8 +57,18 @@ article {
     }
   }
 
-  a {
+  h3 {
+    margin: 10px 0 0;
+  }
+
+  a:not(:first-of-type) {
+    font-size: 14px;
+    opacity: 0.6;
     width: fit-content;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 
   img {
@@ -74,6 +84,22 @@ article {
 
   h3 {
     font-size: 18px;
+    font-weight: 400;
+  }
+
+  &.small {
+    h3 {
+      font-size: inherit;
+      font-weight: 400;
+    }
+
+    p {
+      display: none !important;
+    }
+
+    img {
+      height: 150px;
+    }
   }
 }
 </style>

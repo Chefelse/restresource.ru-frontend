@@ -12,13 +12,15 @@ provide("active", active);
   <header>
     <nav>
       <logotypeComponent></logotypeComponent>
-      <svg width="160" height="40">
-        <use xlink:href="@/assets/icons.svg#text-logo"></use>
-      </svg>
+      <RouterLink :to="{ path: '/' }" custom v-slot="{ navigate }">
+        <svg width="160" height="40" v-on:click="navigate">
+          <use xlink:href="@/assets/icons.svg#text-logo"></use>
+        </svg>
+      </RouterLink>
     </nav>
 
     <nav>
-      <RouterLink :to="{ path: '/' }">Подписаться</RouterLink>
+      <RouterLink :to="{ path: '/plans' }">Подписаться</RouterLink>
       <RouterLink :to="{ name: 'signin' }">Войти</RouterLink> |
       <RouterLink :to="{ name: 'signin' }">Регистрация</RouterLink>
     </nav>
