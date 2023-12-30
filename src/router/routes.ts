@@ -16,14 +16,6 @@ export const routes = [
     },
   },
   {
-    path: "/recipes",
-    name: "recipes",
-    component: () => import("@/pages/recipes/views/recipesView.vue"),
-    meta: {
-      name: "Рецепты",
-    },
-  },
-  {
     path: "/collection/:id",
     name: "collection",
     component: () => import("@/pages/collection/views/collectionView.vue"),

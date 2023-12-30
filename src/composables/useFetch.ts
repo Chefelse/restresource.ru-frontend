@@ -1,3 +1,5 @@
+const api = import.meta.env.VITE_HTTP;
+
 /**
  * Performs an HTTP request and parses the response as JSON.
  *
@@ -5,19 +7,19 @@
  * @return {Promise<T>} A promise that resolves with the parsed JSON.
  */
 export async function http<T>(request: RequestInfo): Promise<T> {
-  const response: Response = await fetch(request)
+  const response: Response = await fetch(request);
 
-  let responseData: T
+  let responseData: T;
   try {
-    responseData = await response.json()
+    responseData = await response.json();
   } catch (ex) {
-    throw new Error('Failed to parse the response body')
+    throw new Error("Failed to parse the response body");
   }
 
   if (!response.ok) {
-    throw new Error(response.statusText)
+    throw new Error(response.statusText);
   }
-  return responseData
+  return responseData;
 }
 
 /**
@@ -27,8 +29,8 @@ export async function http<T>(request: RequestInfo): Promise<T> {
  * @param {RequestInit} args - The initialization options.
  * @return {Promise<T>} A promise that resolves to the response.
  */
-export async function get<T>(path: string, args: RequestInit = { method: 'get' }): Promise<T> {
-  return await http<T>(new Request(path, args))
+export async function get<T>(path: string, args: RequestInit = { method: "get" }): Promise<T> {
+  return await http<T>(new Request(api + path, args));
 }
 
 /**
@@ -39,12 +41,8 @@ export async function get<T>(path: string, args: RequestInit = { method: 'get' }
  * @param {RequestInit} args - Optional arguments for the request
  * @return {Promise<T>} Promise object representing the response
  */
-export async function post<T>(
-  path: string,
-  body: any,
-  args: RequestInit = { method: 'post', body: JSON.stringify(body) }
-): Promise<T> {
-  return await http<T>(new Request(path, args))
+export async function post<T>(path: string, body: any, args: RequestInit = { method: "post", body: JSON.stringify(body) }): Promise<T> {
+  return await http<T>(new Request(api + path, args));
 }
 
 /**
@@ -55,10 +53,6 @@ export async function post<T>(
  * @param {RequestInit} [args] - Optional arguments for the request.
  * @return {Promise<T>} Promise object representing the response.
  */
-export async function put<T>(
-  path: string,
-  body: any,
-  args: RequestInit = { method: 'put', body: JSON.stringify(body) }
-): Promise<T> {
-  return await http<T>(new Request(path, args))
+export async function put<T>(path: string, body: any, args: RequestInit = { method: "put", body: JSON.stringify(body) }): Promise<T> {
+  return await http<T>(new Request(api + path, args));
 }

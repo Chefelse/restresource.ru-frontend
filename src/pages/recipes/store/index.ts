@@ -3,8 +3,6 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import type { Recipe } from "../types";
 
-const http = import.meta.env.VITE_HTTP;
-
 const message = ref<string | null>(null);
 
 export const useRecipes = defineStore("recipes", () => {
@@ -13,7 +11,7 @@ export const useRecipes = defineStore("recipes", () => {
 
   const write = async (data: Recipe) => {
     try {
-      object.value = await post<Recipe>("http://localhost:9000/v1/recipes", data);
+      object.value = await post<Recipe>("/v1/recipes", data);
     } catch (error: any) {
       message.value = "Что-то пошло не так";
     }
@@ -21,7 +19,7 @@ export const useRecipes = defineStore("recipes", () => {
 
   const read = async () => {
     try {
-      array.value = await get<Recipe>(`${http}/v1/recipes`);
+      array.value = await get<Recipe>("/v1/recipes");
     } catch (error: any) {
       message.value = "Что-то пошло не так";
     }
@@ -29,7 +27,7 @@ export const useRecipes = defineStore("recipes", () => {
 
   const readOne = async (data: string) => {
     try {
-      object.value = await get<Recipe>(`${http}/v1/recipes/${data}`);
+      object.value = await get<Recipe>(`/v1/recipes/${data}`);
     } catch (error: any) {
       message.value = "Что-то пошло не так";
     }
@@ -37,7 +35,7 @@ export const useRecipes = defineStore("recipes", () => {
 
   const readBy = async (data: string) => {
     try {
-      array.value = await get<Recipe>(`${http}/v1/recipes/collections/${data}`);
+      array.value = await get<Recipe>(`/v1/recipes/collections/${data}`);
     } catch (error: any) {
       message.value = "Что-то пошло не так";
     }

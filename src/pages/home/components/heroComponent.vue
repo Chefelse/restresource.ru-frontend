@@ -13,11 +13,11 @@ const array = ref([
 </script>
 
 <template>
-  <section v-for="item in array" :key="item.id">
+  <section v-for="el in array" :key="el.id">
     <article>
-      <h1>{{ item.name }}</h1>
+      <h1>{{ el.name }}</h1>
       <p>
-        {{ item.content }}
+        {{ el.content }}
       </p>
 
       <a>
@@ -41,9 +41,9 @@ const array = ref([
 
 <style lang="scss" scoped>
 section {
-  background-color: #393b44;
-  position: relative;
+  background-color: rgb(var(--c-theme));
   height: calc(100vh - 154.8px);
+  position: relative;
 
   article {
     color: #ffffff;
@@ -57,8 +57,8 @@ section {
     z-index: 1;
 
     h1 {
-      margin: auto 0 0;
       font-size: 72px;
+      margin: auto 0 0;
     }
 
     p {
@@ -67,8 +67,8 @@ section {
 
     a {
       cursor: pointer;
-      max-width: 200px;
       margin: auto 0 0;
+      max-width: 200px;
 
       span {
         background-color: #ffffff40;

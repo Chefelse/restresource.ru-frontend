@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { useCollections } from "@/pages/recipes/store/useCollections";
+import { useCollections } from "@/pages/collection/store";
 import { inject } from "vue";
+import { RouterLink } from "vue-router";
 
 const store = useCollections();
 
@@ -12,10 +13,14 @@ store.read();
 <template>
   <section>
     <article v-outside="() => (active = false)">
-      <ul v-for="collection in store.array" :key="collection.id">
-        <li>{{ collection.name }}</li>
+      <ul v-for="collection of store.array" :key="collection.id">
+        <li>
+          <h4>{{ collection.name }}</h4>
+        </li>
 
-        <li v-for="recipe in collection.categories.slice(0, 4)" :key="recipe.id">{{ recipe.name }}</li>
+        <li v-for="el of collection.categories.slice(0, 5)" :key="el.id">
+          <RouterLink :to="{ name: 'recipe', params: { id: el.id } }">{{ el.name }}</RouterLink>
+        </li>
 
         <li>Показать еще</li>
       </ul>
@@ -51,12 +56,7 @@ section {
 
     ul {
       li {
-        cursor: pointer;
-
         &:first-of-type {
-          cursor: default;
-          font-size: 16px;
-          font-weight: 400;
           margin: 0 0 10px;
         }
       }
@@ -74,8 +74,8 @@ section {
 
     button {
       border: 1px solid;
-      text-align: center;
-      padding: 10px 20px;
+      cursor: pointer;
+      padding: 12px 30px;
     }
   }
 }

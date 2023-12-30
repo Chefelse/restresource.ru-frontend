@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useRecipes } from "@/pages/recipes/store/useRecipes";
+import { useRecipes } from "@/pages/recipes/store";
 import cardComponent from "../cardComponent.vue";
 
 const recipes = useRecipes();
@@ -9,7 +9,7 @@ recipes.read();
 
 <template>
   <section>
-    <cardComponent class="small" v-for="el in recipes.array" :key="el.id" :data="el" />
+    <cardComponent v-for="el of recipes.array" :key="el.id" :data="el" />
   </section>
 </template>
 
@@ -17,6 +17,7 @@ recipes.read();
 section {
   display: grid;
   gap: 20px;
-  grid-template: auto / repeat(5, 1fr) !important;
+  grid-template: auto / repeat(4, 1fr) !important;
 }
 </style>
+@/pages/recipes/store

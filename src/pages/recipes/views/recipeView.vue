@@ -1,18 +1,16 @@
 <script lang="ts" setup>
-import { computed, watchEffect } from "vue";
+import { watchEffect } from "vue";
 import { useRoute } from "vue-router";
 import bannerComponent from "../../home/components/bannerComponent.vue";
 import weekRecipesComponent from "../../home/components/week/weekRecipesComponent.vue";
+import IngredientsComponent from "../components/ingredientsComponent.vue";
 import recipesTopbar from "../components/recipesTopbar.vue";
-import { useRecipes } from "../store/useRecipes";
-import type { Ingredients } from "../types";
+import StepsComponent from "../components/stepsComponent.vue";
+import { useRecipes } from "../store";
 
 const route = useRoute();
 
 const recipes = useRecipes();
-
-const getProperties = (el: Ingredients) =>
-  computed(() => `${el.weight[0].name} ${el.weight[0].measure[0]?.name}`).value;
 
 watchEffect(() => recipes.readOne(route.params.id as string));
 </script>
@@ -44,53 +42,9 @@ watchEffect(() => recipes.readOne(route.params.id as string));
     <weekRecipesComponent />
 
     <section>
-      <aside>
-        <h3>Основные ингредиенты</h3>
+      <IngredientsComponent :data="recipes.object" />
 
-        <ul>
-          <li v-for="(el, i) in recipes.object.ingredients" :key="i">
-            <small>{{ i + 1 }}.</small>
-            {{ el.name }} -
-            {{ getProperties(el) }}
-          </li>
-        </ul>
-
-        <template v-if="recipes.object.related">
-          <ul v-for="(related, i) in recipes.object.related" :key="i">
-            <li>
-              <RouterLink :to="{ name: 'recipe', params: { id: related.id } }">{{ related.name }}</RouterLink>
-            </li>
-
-            <li v-for="(el, i) in related.ingredients" :key="i">
-              <small>{{ i + 1 }}.</small>
-              {{ el.name }} -
-              {{ getProperties(el) }}
-            </li>
-          </ul>
-        </template>
-      </aside>
-
-      <article :class="{ private: recipes.object.private }">
-        <h3>Способ приготовления</h3>
-
-        <template v-if="recipes.object.private">
-          <ul v-for="(el, i) in recipes.object.steps.slice(0, 2)" :key="i">
-            <li>
-              <small>{{ i + 1 }}.</small>
-              {{ el.content }}
-            </li>
-          </ul>
-        </template>
-
-        <template v-else>
-          <ul v-for="(el, i) in recipes.object.steps" :key="i">
-            <li>
-              <small>{{ i + 1 }}.</small>
-              {{ el.content }}
-            </li>
-          </ul>
-        </template>
-      </article>
+      <StepsComponent :data="recipes.object" />
     </section>
 
     <bannerComponent v-if="recipes.object.private" />
@@ -103,19 +57,6 @@ main {
   gap: 10px;
   margin: 80px auto;
   max-width: 1200px;
-
-  h1 {
-    font-size: 24px;
-  }
-
-  h2 {
-    font-size: 22px;
-  }
-
-  h3 {
-    font-size: 18px;
-    margin: 0 0 10px;
-  }
 
   section {
     display: grid;
@@ -132,47 +73,8 @@ main {
     &:last-of-type {
       grid-template: auto / 472px auto;
       margin: 40px 0;
-
-      aside {
-        border: 1px solid #eeeeee;
-        display: grid;
-        gap: 20px;
-        padding: 20px;
-        place-content: start;
-
-        ul {
-          li {
-            margin: 0 0 5px;
-
-            a {
-              display: block;
-              font-size: 18px;
-              margin: 0 0 20px;
-              width: fit-content;
-            }
-          }
-        }
-      }
-
-      article {
-        border: 1px solid #eeeeee;
-        display: grid;
-        padding: 20px;
-        position: relative;
-
-        &.private {
-          &::before {
-            content: "";
-
-            background: rgb(255, 255, 255);
-            background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.298739564185049) 100%);
-
-            position: absolute;
-            inset: 0;
-          }
-        }
-      }
     }
   }
 }
 </style>
+../store

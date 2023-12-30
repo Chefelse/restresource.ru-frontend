@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { useCollections } from "@/pages/recipes/store/useCollections";
-import { useRecipes } from "@/pages/recipes/store/useRecipes";
+import { useRecipes } from "@/pages/recipes/store";
 import { useRoute } from "vue-router";
 import cardComponent from "../../home/components/cardComponent.vue";
+import { useCollections } from "../store";
 
 const route = useRoute();
 
@@ -26,16 +26,15 @@ recipes.readBy(route.params.id as string);
         <h3>{{ collections.object?.name }}</h3>
 
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, eos quia reprehenderit quidem asperiores
-          vitae quod aliquam vel laboriosam voluptatum, nam ab libero quae similique mollitia atque temporibus magni ex.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, eos quia reprehenderit quidem asperiores
-          vitae quod aliquam vel laboriosam voluptatum, nam ab libero quae similique mollitia atque temporibus magni ex.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, eos quia reprehenderit quidem asperiores vitae quod aliquam vel laboriosam
+          voluptatum, nam ab libero quae similique mollitia atque temporibus magni ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, eos quia
+          reprehenderit quidem asperiores vitae quod aliquam vel laboriosam voluptatum, nam ab libero quae similique mollitia atque temporibus magni ex.
         </p>
       </article>
     </section>
 
     <section>
-      <h1>Рецепты этой коллекции</h1>
+      <h3>Рецепты этой коллекции</h3>
 
       <aside>
         <ul>
@@ -47,7 +46,7 @@ recipes.readBy(route.params.id as string);
       </aside>
 
       <div>
-        <cardComponent class="small" v-for="el in recipes.array" :key="el.id" :data="el" />
+        <cardComponent v-for="el in recipes.array" :key="el.id" :data="el" />
       </div>
     </section>
   </main>
@@ -65,12 +64,16 @@ main {
     display: grid;
     gap: 20px;
 
+    h3 {
+      margin: 20px auto;
+    }
+
     &:last-of-type {
       grid-template: auto / 280px auto;
-      gap: 20px;
 
-      h1 {
+      h3 {
         grid-column: 1 / -1;
+        margin: 0;
       }
 
       aside {
@@ -83,26 +86,10 @@ main {
 
       div {
         display: grid;
-        gap: 20px;
-        grid-template: auto / repeat(3, 1fr);
-
-        article:deep() {
-          p {
-            display: none;
-          }
-        }
+        grid-template: auto / repeat(4, 1fr);
       }
     }
   }
-
-  h1 {
-    font-size: 24px;
-  }
-
-  h3 {
-    font-size: 18px;
-    text-align: center;
-    margin: 20px 0;
-  }
 }
 </style>
+@/pages/recipes/store

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineAsyncComponent, ref } from "vue";
 import { useRouter } from "vue-router";
-import { useSignin } from "../store/useSignin";
+import { useSignin } from "../store";
 import type { Guest } from "../types";
 
 const signinFormComponent = defineAsyncComponent(() => import("../components/signinFormComponent.vue"));
@@ -129,3 +129,4 @@ main {
   }
 }
 </style>
+../store

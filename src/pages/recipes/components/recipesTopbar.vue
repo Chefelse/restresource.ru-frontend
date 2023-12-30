@@ -31,7 +31,7 @@ defineProps<{
         <use xlink:href="@/assets/icons.svg#time"></use>
       </svg>
 
-      {{ data.time }}
+      {{ data.time }} мин.
     </li>
   </ul>
 </template>

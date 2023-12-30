@@ -15,8 +15,10 @@ const props = defineProps<{
           id: props.data.id,
         },
       }"
+      custom
+      v-slot="{ navigate }"
     >
-      <img :src="props.data.image || 'https://placehold.co/1920x1200/393b44/FFFFFF/webp'" loading="lazy" />
+      <img v-on:click="navigate" :src="props.data.image || 'https://placehold.co/1920x1200/393b44/FFFFFF/webp'" loading="lazy" />
     </RouterLink>
 
     <RouterLink
@@ -26,8 +28,10 @@ const props = defineProps<{
           id: props.data.id,
         },
       }"
+      custom
+      v-slot="{ navigate }"
     >
-      <h3>{{ props.data.name }}</h3>
+      <h4 v-on:click="navigate">{{ props.data.name }}</h4>
     </RouterLink>
 
     <RouterLink
@@ -50,67 +54,25 @@ const props = defineProps<{
 <style lang="scss" scoped>
 article {
   display: grid;
-  gap: 5px;
+  gap: 8px;
   grid-template: 1fr auto / auto;
 
-  &:first-of-type {
-    grid-column: 1 / 2;
-    grid-row: 1 / 3;
-
-    img {
-      max-height: unset;
-    }
-
-    p {
-      display: initial;
-    }
-  }
-
-  h3 {
-    margin: 10px 0 0;
-  }
-
-  a:not(:first-of-type) {
-    font-size: 14px;
-    opacity: 0.6;
-    width: fit-content;
+  a {
+    font-size: 0.85rem;
+    color: #6a6a6a;
 
     &:hover {
-      opacity: 1;
+      color: initial;
     }
   }
 
-  img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  img,
+  h4 {
+    cursor: pointer;
   }
 
   p {
     display: none;
-  }
-
-  h3 {
-    font-size: 18px;
-    font-weight: 400;
-  }
-
-  &.small {
-    grid-row: unset;
-
-    h3 {
-      font-size: inherit;
-      font-weight: 400;
-    }
-
-    p {
-      display: none !important;
-    }
-
-    img {
-      height: 150px;
-    }
   }
 }
 </style>

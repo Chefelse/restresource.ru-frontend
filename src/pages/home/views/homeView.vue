@@ -9,10 +9,10 @@ import weekRecipesComponent from "../components/week/weekRecipesComponent.vue";
   <heroComponent />
 
   <main>
-    <h1>На этой неделе</h1>
+    <h2>На этой неделе</h2>
     <weekComponent />
 
-    <h2>Рецепты этой недели</h2>
+    <h3>Рецепты этой недели</h3>
     <weekRecipesComponent />
 
     <bannerComponent />
@@ -27,14 +27,6 @@ main {
   max-width: 1200px;
   padding: 20px;
 
-  h1 {
-    font-size: 24px;
-  }
-
-  h2 {
-    font-size: 20px;
-    margin: 40px 0 0;
-  }
   section {
     margin: 0 0 40px;
   }

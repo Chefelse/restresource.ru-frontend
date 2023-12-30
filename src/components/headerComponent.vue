@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import logotypeComponent from "@/components/logotypeComponent.vue";
-import recipesModalComponent from "@/pages/home/components/recipesModalComponent.vue";
 import { provide, ref } from "vue";
+import { RouterLink } from "vue-router";
+import headerModalComponent from "./headerModalComponent.vue";
 
 const active = ref(false);
 
@@ -13,7 +14,7 @@ provide("active", active);
     <nav>
       <logotypeComponent></logotypeComponent>
 
-      <RouterLink :to="{ path: '/' }" custom v-slot="{ navigate }">
+      <RouterLink :to="{ name: 'home' }" custom v-slot="{ navigate }">
         <svg width="160" height="40" v-on:click="navigate">
           <use xlink:href="@/assets/icons.svg#text-logo"></use>
         </svg>
@@ -21,7 +22,7 @@ provide("active", active);
     </nav>
 
     <nav>
-      <RouterLink :to="{ path: '/plans' }">Подписаться</RouterLink>
+      <RouterLink :to="{ name: 'plans' }">Подписаться</RouterLink>
       <RouterLink :to="{ name: 'signin' }">Войти</RouterLink> |
       <RouterLink :to="{ name: 'signin' }">Регистрация</RouterLink>
     </nav>
@@ -49,12 +50,12 @@ provide("active", active);
     </ul>
   </nav>
 
-  <recipesModalComponent v-if="active" />
+  <headerModalComponent v-if="active" />
 </template>
 
 <style lang="scss" scoped>
 header {
-  background-color: #fff;
+  background-color: #ffffff;
   box-shadow:
     0 4px 4px #151f3208,
     0 8px 18px #151f3208;
