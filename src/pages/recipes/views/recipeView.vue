@@ -1,14 +1,17 @@
 <script lang="ts" setup>
-import { watchEffect } from "vue";
+import { computed, watchEffect } from "vue";
 import { useRoute } from "vue-router";
 import bannerComponent from "../../home/components/bannerComponent.vue";
 import weekRecipesComponent from "../../home/components/week/weekRecipesComponent.vue";
 import recipesTopbar from "../components/recipesTopbar.vue";
 import { useRecipes } from "../store/useRecipes";
+import type { Ingredients } from "../types";
 
 const route = useRoute();
 
 const recipes = useRecipes();
+
+const getProperties = (el: Ingredients) => computed(() => `${el.weight[0].name} ${el.weight[0].measure[0].name}`).value;
 
 watchEffect(() => recipes.readOne(route.params.id as string));
 </script>
@@ -43,21 +46,23 @@ watchEffect(() => recipes.readOne(route.params.id as string));
         <h3>Основные ингредиенты</h3>
 
         <ul>
-          <li v-for="(ingredient, i) in recipes.object.ingredients" :key="i">
+          <li v-for="(el, i) in recipes.object.ingredients" :key="i">
             <small>{{ i + 1 }}.</small>
-            {{ ingredient.name }}
+            {{ el.name }} -
+            {{ getProperties(el) }}
           </li>
         </ul>
 
         <template v-if="recipes.object.related">
-          <ul v-for="(el, i) in recipes.object.related" :key="i">
+          <ul v-for="(related, i) in recipes.object.related" :key="i">
             <li>
-              <RouterLink :to="{ name: 'recipe', params: { id: el.id } }">{{ el.name }}</RouterLink>
+              <RouterLink :to="{ name: 'recipe', params: { id: related.id } }">{{ related.name }}</RouterLink>
             </li>
 
-            <li v-for="(ingredient, i) in el.ingredients" :key="i">
+            <li v-for="(el, i) in related.ingredients" :key="i">
               <small>{{ i + 1 }}.</small>
-              {{ ingredient.name }}
+              {{ el.name }} -
+              {{ getProperties(el) }}
             </li>
           </ul>
         </template>

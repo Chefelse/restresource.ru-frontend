@@ -32,6 +32,7 @@ interface Levels {
 interface Ingredients {
   id?: number | null;
   name: any;
+  weight?: any;
 }
 
 interface Recipe {
