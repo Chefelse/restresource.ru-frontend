@@ -13,7 +13,7 @@ const props = defineProps<{
     <template v-if="props.data.private">
       <ul v-for="(el, i) in props.data.steps.slice(0, 2)" :key="i">
         <li>
-          <small>{{ i + 1 }}.</small>
+          <span>{{ i + 1 }}.</span>
           {{ el.content }}
         </li>
       </ul>
@@ -22,7 +22,7 @@ const props = defineProps<{
     <template v-else>
       <ul v-for="(el, i) in props.data.steps" :key="i">
         <li>
-          <small>{{ i + 1 }}.</small>
+          <span>{{ i + 1 }}.</span>
           {{ el.content }}
         </li>
       </ul>
@@ -36,6 +36,14 @@ article {
   display: grid;
   padding: 20px;
   position: relative;
+
+  ul {
+    li {
+      span {
+        font-size: 1.2rem;
+      }
+    }
+  }
 
   &.private {
     &::before {

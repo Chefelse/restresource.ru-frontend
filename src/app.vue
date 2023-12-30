@@ -10,9 +10,7 @@ const store = useLoader();
 <template>
   <headerComponent />
   <router-view v-slot="{ Component }">
-    <transition name="fade">
-      <loaderComponent v-if="store.loader" />
-    </transition>
+    <loaderComponent v-if="store.loader" />
 
     <component :is="Component" />
   </router-view>
@@ -26,7 +24,6 @@ const store = useLoader();
   --c-background: 255, 255, 255; // #f8fafc
   --c-dark: 34, 39, 46; // #22272e
   --c-theme: 57, 59, 68; // 393B44
-  --t-transition: 0.2s;
 }
 
 body {
@@ -59,16 +56,6 @@ h3,
 h4,
 a {
   width: fit-content;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity var(--t-transition) ease-in-out;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
 }
 
 img {

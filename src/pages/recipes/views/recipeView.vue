@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+import bannerComponent from "@/components/bannerComponent.vue";
 import { watchEffect } from "vue";
 import { useRoute } from "vue-router";
-import bannerComponent from "../../home/components/bannerComponent.vue";
 import weekRecipesComponent from "../../home/components/week/weekRecipesComponent.vue";
 import IngredientsComponent from "../components/ingredientsComponent.vue";
 import recipesTopbar from "../components/recipesTopbar.vue";

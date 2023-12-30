@@ -43,7 +43,7 @@ form {
   }
 
   button {
-    background-color: #000000;
+    background-color: rgb(var(--c-theme));
     color: #ffffff;
     cursor: pointer;
     padding: 12px 32px;

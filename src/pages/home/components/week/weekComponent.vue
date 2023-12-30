@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useRecipes } from "@/pages/recipes/store/useRecipes";
+import { useRecipes } from "@/pages/recipes/store";
 import cardComponent from "../cardComponent.vue";
 
 const recipes = useRecipes();
