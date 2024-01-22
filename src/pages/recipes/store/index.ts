@@ -6,7 +6,7 @@ import type { Recipe } from "../types";
 const message = ref<string | null>(null);
 
 export const useRecipes = defineStore("recipes", () => {
-  const array = ref<Recipe>();
+  const array = ref<Recipe | any>([]);
   const object = ref<Recipe>();
 
   const write = async (data: Recipe) => {

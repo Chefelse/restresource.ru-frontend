@@ -9,7 +9,7 @@ recipes.read();
 
 <template>
   <section>
-    <cardComponent v-for="el of recipes.array" :key="el.id" :data="el" />
+    <cardComponent v-for="el of recipes.array.slice(0, 3)" :key="el.id" :data="el" />
   </section>
 </template>
 

@@ -7,6 +7,7 @@
     "dev": "vite --mode development",
     "prod": "vite --mode production",
     "build": "run-p type-check \"build-only {@}\" --",
+    "deploy": "vite build --mode production && rsync --archive --compress --delete ./dist/* root@62.217.183.99:/var/www/restresource.ru/html/",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",

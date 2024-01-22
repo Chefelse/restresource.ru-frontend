@@ -4,8 +4,8 @@ import { ref } from "vue";
 const array = ref([
   {
     id: 0,
-    name: "Le Gruyère",
-    content: `Switzerland is known for a wide variety of amazing cheeses, but if there's one that has particularly captivated the world, it's Gruyere.`,
+    name: "Maiores vero nostrum",
+    content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores vero nostrum, numquam harum accusantium vitae facere ducimus et. Atque blanditiis tempora expedita autem, repellendus necessitatibus nisi aliquid labore alias temporibus.`,
     picture: ["https://placehold.co/2048x1080/393B44/FFF.jpg", "https://placehold.co/2048x1080/393B44/FFF.webp"],
     video: "https://placehold.co/2048x1080/393B44/FFF.mp4",
   },

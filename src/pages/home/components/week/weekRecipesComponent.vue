@@ -9,7 +9,7 @@ recipes.read();
 
 <template>
   <section>
-    <cardComponent v-for="el of recipes.array" :key="el.id" :data="el" />
+    <cardComponent v-for="el of recipes.array.slice(0, 4)" :key="el.id" :data="el" />
   </section>
 </template>
 
@@ -18,6 +18,7 @@ section {
   display: grid;
   gap: 20px;
   grid-template: auto / repeat(4, 1fr) !important;
+  place-items: start;
 }
 </style>
 @/pages/recipes/store

@@ -22,7 +22,7 @@ const props = defineProps<{
     <template v-else>
       <ul v-for="(el, i) in props.data.steps" :key="i">
         <li>
-          <span>{{ i + 1 }}.</span>
+          <span>{{ i + 1 }}</span>
           {{ el.content }}
         </li>
       </ul>
@@ -39,8 +39,22 @@ article {
 
   ul {
     li {
+      display: grid;
+      grid-template: auto / 24px auto;
+      gap: 10px;
+      place-items: start;
+
       span {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
+        line-height: 1.2;
+      }
+    }
+
+    &:last-of-type {
+      li {
+        span {
+          opacity: 0;
+        }
       }
     }
   }

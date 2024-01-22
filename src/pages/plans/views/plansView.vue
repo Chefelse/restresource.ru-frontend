@@ -69,22 +69,26 @@ const plans = [
       </p>
 
       <ul>
-        Что такое Клуб британских поваров?
+        Что такое закрытый клуб и в чем его особенность?
 
         <li>
-          Great British Chefs Club - это новая захватывающая зона для тех, кто по-настоящему любит готовить. Члены клуба получат доступ к эксклюзивным рецептам,
-          статьям и видео на полгода раньше бесплатных пользователей, а также возможность участвовать в конкурсах только для членов клуба, получать скидки на
-          высококачественные кухонные принадлежности и особые привилегии при посещении ресторанов.
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem esse dignissimos nostrum vero minus nihil ullam non qui quis delectus, libero, ipsum
+          dolor alias? Molestiae eum, accusantium odit praesentium ut, sit ex explicabo nostrum, autem quo quam aspernatur unde dolore et eveniet nemo harum
+          esse nobis aliquid at reiciendis perspiciatis rerum cupiditate animi! Illum, alias mollitia rem assumenda aperiam nihil quo ad possimus fugit officia
+          reiciendis, dolorum unde autem a rerum nulla iure eaque quia commodi voluptatibus adipisci ducimus at placeat. Atque, eveniet quidem quaerat sint
+          minus quod perferendis tempore distinctio deleniti odit pariatur dolore possimus, dicta odio nam eos.
         </li>
       </ul>
 
       <ul>
-        Что я получу, если стану участником Серебряного и Золотого уровней?
+        Что я получу, если стану участником Специалист и Премиум уровней?
 
         <li>
-          Участники Серебряного уровня получают ранний доступ к эксклюзивным рецептам, функциям и видео, а также возможность участвовать в конкурсах только для
-          участников. Участники уровня Gold получают все, что входит в Silver, плюс бесплатные подарки и возможность выиграть призы, которые нельзя купить за
-          деньги, вместе с нашими шеф-поварами (и еще больше преимуществ в будущем!).
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem esse dignissimos nostrum vero minus nihil ullam non qui quis delectus, libero, ipsum
+          dolor alias? Molestiae eum, accusantium odit praesentium ut, sit ex explicabo nostrum, autem quo quam aspernatur unde dolore et eveniet nemo harum
+          esse nobis aliquid at reiciendis perspiciatis rerum cupiditate animi! Illum, alias mollitia rem assumenda aperiam nihil quo ad possimus fugit officia
+          reiciendis, dolorum unde autem a rerum nulla iure eaque quia commodi voluptatibus adipisci ducimus at placeat. Atque, eveniet quidem quaerat sint
+          minus quod perferendis tempore distinctio deleniti odit pariatur dolore possimus, dicta odio nam eos.
         </li>
       </ul>
 
@@ -94,7 +98,7 @@ const plans = [
         <li>
           Пользователи, присоединившиеся к бесплатному уровню, получают дополнительно два рецепта или блюда в день (всего пять), по сравнению с пользователями,
           не создавшими аккаунт (которые получают только три). Вы также получите доступ к странице учетной записи, где вы сможете подписаться на рассылку
-          новостей и использовать нашу папку Binder для сохранения ваших любимых рецептов.
+          новостей и использовать личную папку для сохранения ваших любимых рецептов.
         </li>
       </ul>
 
@@ -108,7 +112,7 @@ const plans = [
       </ul>
 
       <ul>
-        Что произойдет, если я стану Серебряным или Золотым?
+        Что произойдет, если я стану Специалист или Премиум?
 
         <li>
           Как только вы вступите в наш клуб, вы будете перенаправлены в раздел для участников, где вы найдете все наши рецепты и функции, доступные только для
@@ -120,16 +124,15 @@ const plans = [
         Что, если я захочу отменить свое членство?
 
         <li>
-          Вы можете отменить свое членство в любое время - просто напишите нам на silvermembership@greatbritishchefs.com или
-          goldmembership@greatbritishchefs.com (в зависимости от того, на каком уровне вы состоите). Вы сможете просматривать наш премиум-контент до тех пор,
-          пока не закончится срок действия вашего членства.
+          Вы можете отменить свое членство в любое время - просто напишите нам на membership@restresource.ru. Вы сможете просматривать наш премиум-контент до
+          тех пор, пока не закончится срок действия вашего членства.
         </li>
       </ul>
 
       <ul>
         А если у меня возникнет другой вопрос?
 
-        <li>Пожалуйста, свяжитесь с нами по адресу info@greatbritishchefs.com, и мы будем рады помочь!</li>
+        <li>Пожалуйста, свяжитесь с нами по адресу support@restresource.ru, и мы будем рады помочь!</li>
       </ul>
     </section>
   </main>
