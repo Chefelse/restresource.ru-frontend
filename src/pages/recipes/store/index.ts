@@ -1,13 +1,14 @@
 import { get, post } from "@/composables/useFetch";
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import type { Recipe } from "../types";
+import type { Ingredients, Recipe } from "../types";
 
 const message = ref<string | null>(null);
 
 export const useRecipes = defineStore("recipes", () => {
   const array = ref<Recipe | any>([]);
   const object = ref<Recipe>();
+  const ingredients = ref<Ingredients | any>([]);
 
   const write = async (data: Recipe) => {
     try {
@@ -20,6 +21,14 @@ export const useRecipes = defineStore("recipes", () => {
   const read = async () => {
     try {
       array.value = await get<Recipe>("/v1/recipes");
+    } catch (error: any) {
+      message.value = "Что-то пошло не так";
+    }
+  };
+
+  const readIngredientsMatched = async () => {
+    try {
+      ingredients.value = await get<Recipe>("/v1/ingredients/matched");
     } catch (error: any) {
       message.value = "Что-то пошло не так";
     }
@@ -41,5 +50,5 @@ export const useRecipes = defineStore("recipes", () => {
     }
   };
 
-  return { array, object, message, write, read, readOne, readBy };
+  return { array, object, message, ingredients, write, read, readOne, readBy, readIngredientsMatched };
 });

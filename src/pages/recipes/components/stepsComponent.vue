@@ -11,19 +11,28 @@ const props = defineProps<{
     <h3>Способ приготовления</h3>
 
     <template v-if="props.data.private">
-      <ul v-for="(el, i) in props.data.steps.slice(0, 2)" :key="i">
-        <li>
-          <span>{{ i + 1 }}.</span>
+      <ul>
+        <li v-for="(el, i) in props.data.steps.slice(0, 2)" :key="i">
+          <span>{{ i + 1 }}</span>
           {{ el.content }}
         </li>
       </ul>
     </template>
 
     <template v-else>
-      <ul v-for="(el, i) in props.data.steps" :key="i">
-        <li>
+      <ul>
+        <li v-for="(el, i) in props.data.steps" :key="i">
           <span>{{ i + 1 }}</span>
           {{ el.content }}
+        </li>
+      </ul>
+
+      <ul v-for="(el, i) in props.data.related" :key="i">
+        <h3>{{ el.name }}</h3>
+        <li v-for="(step, idx) in el.steps" :key="idx">
+          <span>{{ idx + 1 }}</span>
+
+          {{ step.content }}
         </li>
       </ul>
     </template>
@@ -38,6 +47,9 @@ article {
   position: relative;
 
   ul {
+    display: grid;
+    gap: 20px;
+
     li {
       display: grid;
       grid-template: auto / 24px auto;
@@ -50,8 +62,8 @@ article {
       }
     }
 
-    &:last-of-type {
-      li {
+    li {
+      &:last-of-type {
         span {
           opacity: 0;
         }

@@ -4,8 +4,8 @@ import { ref } from "vue";
 const array = ref([
   {
     id: 0,
-    name: "Maiores vero nostrum",
-    content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores vero nostrum, numquam harum accusantium vitae facere ducimus et. Atque blanditiis tempora expedita autem, repellendus necessitatibus nisi aliquid labore alias temporibus.`,
+    name: "Ресторанный ресурс",
+    content: `универсальный путеводитель по индустрии питания.`,
     picture: ["https://placehold.co/2048x1080/393B44/FFF.jpg", "https://placehold.co/2048x1080/393B44/FFF.webp"],
     video: "https://placehold.co/2048x1080/393B44/FFF.mp4",
   },
@@ -24,8 +24,8 @@ const array = ref([
         Новости недели
 
         <span>
-          <svg width="50" height="50">
-            <use xlink:href="@/assets/icons.svg#chevron"></use>
+          <svg height="41" viewBox="0 0 21 21" width="41" xmlns="http://www.w3.org/2000/svg">
+            <path d="m8.5.5-4 4-4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(6 8)" />
           </svg>
         </span>
       </a>
@@ -62,6 +62,7 @@ section {
     }
 
     p {
+      font-size: 18px;
       max-width: 600px;
     }
 

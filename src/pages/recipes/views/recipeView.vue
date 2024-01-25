@@ -25,7 +25,7 @@ watchEffect(() => recipes.readOne(route.params.id as string));
 
     <section>
       <picture>
-        <img :src="recipes.object.image || 'https://placehold.co/1920x1200/393b44/FFFFFF/webp'" loading="lazy" />
+        <img :src="recipes.object.image || 'https://restresource.ru/blank.webp'" loading="lazy" />
       </picture>
 
       <article>

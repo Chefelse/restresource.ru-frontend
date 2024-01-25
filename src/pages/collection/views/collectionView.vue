@@ -38,10 +38,10 @@ recipes.readBy(route.params.id as string);
 
       <aside>
         <ul>
-          <li>afwafawfawf</li>
-          <li>afwafawfawf</li>
-          <li>afwafawfawf</li>
-          <li>afwafawfawf</li>
+          <li>фильтр 1</li>
+          <li>фильтр 2</li>
+          <li>фильтр 3</li>
+          <li>фильтр 4</li>
         </ul>
       </aside>
 
@@ -86,7 +86,9 @@ main {
 
       div {
         display: grid;
-        grid-template: auto / repeat(4, 1fr);
+        grid-template: auto/repeat(3, 1fr);
+        gap: 20px;
+        place-items: baseline;
       }
     }
   }

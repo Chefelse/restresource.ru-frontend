@@ -18,7 +18,7 @@ const props = defineProps<{
       custom
       v-slot="{ navigate }"
     >
-      <img v-on:click="navigate" :src="props.data.image || 'https://placehold.co/1920x1200/393b44/FFFFFF/webp'" loading="lazy" />
+      <img v-on:click="navigate" :src="props.data.image || 'https://restresource.ru/blank.webp'" loading="lazy" />
     </RouterLink>
 
     <RouterLink
