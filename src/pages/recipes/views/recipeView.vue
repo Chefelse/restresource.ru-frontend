@@ -8,6 +8,8 @@ import recipesTopbar from "../components/recipesTopbar.vue";
 import StepsComponent from "../components/stepsComponent.vue";
 import { useRecipes } from "../store";
 
+const api = import.meta.env.VITE_HTTP;
+
 const route = useRoute();
 
 const recipes = useRecipes();
@@ -25,7 +27,7 @@ watchEffect(() => recipes.readOne(route.params.id as string));
 
     <section>
       <picture>
-        <img :src="recipes.object.image || 'https://restresource.ru/blank.webp'" loading="lazy" />
+        <img :src="`${api}/out/${recipes.object.image}.webp` || 'https://restresource.ru/blank.webp'" loading="lazy" />
       </picture>
 
       <article>
@@ -68,6 +70,11 @@ main {
       display: grid;
       gap: 20px;
       place-content: start;
+    }
+
+    img {
+      max-height: 480px;
+      object-fit: cover;
     }
 
     &:last-of-type {

@@ -9,7 +9,7 @@ recipes.read();
 
 <template>
   <section>
-    <cardComponent v-for="el of recipes.array.slice(0, 3)" :key="el.id" :data="el" />
+    <cardComponent v-for="el of recipes.array.filter((el: any) => el.status === true)" :key="el.id" :data="el" />
   </section>
 </template>
 
@@ -18,11 +18,18 @@ section {
   display: grid;
   gap: 20px;
   grid-template: auto / 1fr 300px;
+  place-items: start normal;
 
   article {
     &:first-of-type {
       :deep() {
         grid-row: 1 / 3;
+
+        img {
+          height: 471px;
+          width: 100%;
+          object-fit: cover;
+        }
 
         p {
           display: unset;

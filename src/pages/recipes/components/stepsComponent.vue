@@ -1,9 +1,12 @@
 <script lang="ts" setup>
-import type { Recipe } from "../types";
+import { computed } from "vue";
+import type { Ingredients, Recipe } from "../types";
 
 const props = defineProps<{
   data: Recipe;
 }>();
+
+const getProperties = (el: Ingredients) => computed(() => `${el.weight[0].amount} ${el.weight[0].measure[0]?.name}`).value;
 </script>
 
 <template>
@@ -13,26 +16,30 @@ const props = defineProps<{
     <template v-if="props.data.private">
       <ul>
         <li v-for="(el, i) in props.data.steps.slice(0, 2)" :key="i">
-          <span>{{ i + 1 }}</span>
           {{ el.content }}
         </li>
       </ul>
     </template>
 
     <template v-else>
-      <ul>
-        <li v-for="(el, i) in props.data.steps" :key="i">
-          <span>{{ i + 1 }}</span>
-          {{ el.content }}
+      <ul v-for="(el, i) in props.data.related" :key="i">
+        <h3>{{ el.name }}</h3>
+
+        <li>
+          <ul>
+            <li v-for="(ing, idx) in el.ingredients" :key="idx">{{ ing.name }} - {{ getProperties(ing) }}</li>
+          </ul>
+        </li>
+
+        <li v-for="(step, idx) in el.steps" :key="idx">
+          {{ step.content }}
         </li>
       </ul>
 
-      <ul v-for="(el, i) in props.data.related" :key="i">
-        <h3>{{ el.name }}</h3>
-        <li v-for="(step, idx) in el.steps" :key="idx">
-          <span>{{ idx + 1 }}</span>
-
-          {{ step.content }}
+      <h3>Презентация блюда</h3>
+      <ul>
+        <li v-for="(el, i) in props.data.steps" :key="i">
+          {{ el.content }}
         </li>
       </ul>
     </template>
@@ -51,21 +58,13 @@ article {
     gap: 20px;
 
     li {
-      display: grid;
-      grid-template: auto / 24px auto;
-      gap: 10px;
-      place-items: start;
+      ul {
+        background-color: #f9f9f9;
+        padding: 20px;
+        gap: 10px;
 
-      span {
-        font-size: 1.5rem;
-        line-height: 1.2;
-      }
-    }
-
-    li {
-      &:last-of-type {
-        span {
-          opacity: 0;
+        li {
+          display: block;
         }
       }
     }

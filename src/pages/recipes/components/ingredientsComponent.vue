@@ -11,7 +11,7 @@ const store = useRecipes();
 
 store.readIngredientsMatched();
 
-const getProperties = (el: Ingredients) => computed(() => `${el.weight[0].name} ${el.weight[0].measure[0]?.name}`).value;
+const getProperties = (el: Ingredients) => computed(() => `${el.weight[0].amount} ${el.weight[0].measure[0]?.name}`).value;
 </script>
 
 <template>
@@ -20,8 +20,6 @@ const getProperties = (el: Ingredients) => computed(() => `${el.weight[0].name} 
 
     <ul>
       <li v-for="(el, i) in props.data.ingredients" :key="i">
-        <!-- <small>{{ i + 1 }}.</small> -->
-
         <template v-if="store.array.some((e: any) => e.name === el.name)">
           <RouterLink :to="{ name: 'recipe', params: { id: store.array.find((e: any) => e.name === el.name).id } }">{{ el.name }}</RouterLink>
           -
@@ -35,22 +33,6 @@ const getProperties = (el: Ingredients) => computed(() => `${el.weight[0].name} 
         {{ getProperties(el) }}
       </li>
     </ul>
-
-    <template v-if="props.data.related">
-      <ul v-for="(related, i) in props.data.related" :key="i">
-        <li>
-          <h4>
-            {{ related.name }}
-          </h4>
-        </li>
-
-        <li v-for="(el, i) in related.ingredients" :key="i">
-          <!-- <small>{{ i + 1 }}.</small> -->
-          {{ el.name }} -
-          {{ getProperties(el) }}
-        </li>
-      </ul>
-    </template>
   </aside>
 </template>
 

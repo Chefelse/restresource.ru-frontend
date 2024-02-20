@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import type { Recipe } from "@/pages/recipes/types";
 
+const api = import.meta.env.VITE_HTTP;
+
 const props = defineProps<{
   data: Recipe;
 }>();
@@ -18,7 +20,7 @@ const props = defineProps<{
       custom
       v-slot="{ navigate }"
     >
-      <img v-on:click="navigate" :src="props.data.image || 'https://restresource.ru/blank.webp'" loading="lazy" />
+      <img v-on:click="navigate" :src="`${api}/out/${props.data.image}.webp` || 'https://restresource.ru/blank.webp'" loading="lazy" />
     </RouterLink>
 
     <RouterLink
@@ -64,6 +66,11 @@ article {
     &:hover {
       color: initial;
     }
+  }
+
+  img {
+    height: 227px;
+    object-fit: cover;
   }
 
   img,
